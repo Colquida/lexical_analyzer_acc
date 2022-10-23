@@ -2,11 +2,15 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <time.h>
 #define MAX_PLAYERS 4
+int lucha(int salud_pj);
+
 
 int vAxel = 100, vGrasshopper = 100, vGrimm = 100, vHammerhead = 100, vMinion = 100, mine=0;
 int vOutlaw = 100, vRoadkill = 100, vShadow = 100, totalJugadores = 0, contador=0, escenarioActual = 0, jugada = 0;
-int nJugadores[4] = {50,51,52,53}, iter = 0, vEscudo=20, cooldown=0;
+int nJugadores[1000] = {50,51,52,53}, iter = 0, vEscudo=20, cooldown=0;
 bool estado = false, barrera=false;
 int ataque = 5;
 
@@ -61,7 +65,7 @@ L1L2R1R2→←↑ {printf("Fireball and freeze attack \n"); ataque=20;}
 〇 {printf("Frenar \n");}
 □ {printf("Acelerar \n");}
 L1 {printf("Cambiar de arma a la izquierda \n");}
-L2 {printf("dispara a "); jugada += 1; estado = true;}
+L2 {printf("dispara a "); estado = true;}
 R1 {printf("Cambiar de arma a la derecha \n");}
 R2 {printf("Ametralladora \n");}
 
@@ -76,9 +80,13 @@ R2 {printf("Ametralladora \n");}
 
 {personaje1} {printf("Axel ");totalJugadores += 1; nJugadores[iter] = 1; iter += 1;
 		vAxel=lucha(vAxel);}
-{personaje2} {printf("EL personaje elegido es Grasshopper \n");totalJugadores += 1; nJugadores[iter] = 2; iter += 1;}
-{personaje3} {printf("Mr.Grimm ");totalJugadores += 1; nJugadores[iter] = 3; iter += 1;}
-{personaje4} {printf("El personaje elegido es Hammerhead \n");totalJugadores += 1; nJugadores[iter] = 4; iter += 1;}
+{personaje2} {printf("Grasshopper ");totalJugadores += 1; nJugadores[iter] = 2; iter += 1;
+		
+		}
+{personaje3} {printf("Mr.Grimm ");totalJugadores += 1; nJugadores[iter] = 3; iter += 1;
+		vGrimm=lucha(vGrimm);}
+{personaje4} {printf("Hammerhead ");totalJugadores += 1; nJugadores[iter] = 4; iter += 1;
+		vHammerhead=lucha(vHammerhead);}
 {personaje5} {printf("El personaje elegido es Minion \n");totalJugadores += 1; nJugadores[iter] = 5; iter += 1;}
 {personaje6} {printf("El personaje elegido es Outlaw 2 \n");totalJugadores += 1; nJugadores[iter] = 6; iter += 1;}
 {personaje7} {printf("EL personaje elegido es Roadkill \n");totalJugadores += 1; nJugadores[iter] = 7; iter += 1;}
@@ -95,12 +103,28 @@ R2 {printf("Ametralladora \n");}
 
 int lucha(int salud_pj){
 	
-	if(estado){salud_pj -= ataque; estado = false;} 
-	printf("%d", salud_pj);//it's fine
+	if (estado){
+		if(rand()%2==0){
+			salud_pj -= ataque; estado = false;
+			printf("%d", salud_pj);
+			//return salud_pj;
+		}else {
+			printf("falló ataque \n");
+			estado = false;
+			//return salud_pj;
+			}
+		} return salud_pj;
+	
+	//it's fine
+	/*
+	if (barrera){
+		int temporal = salud_pj-ataque;
+		salud_pj+=barrera-ataque;
+	}*/
 	
 	/*
 	
-	if (cooldown!=2){
+	if (cooldown==0){
 		if(estado){salud_pj -= ataque; estado = false;} 
 	} else {
 		salud_pj+=vEscudo-ataque;
@@ -109,8 +133,7 @@ int lucha(int salud_pj){
 	}*/
 	
 	/*if (barrera){salud_pj+=vEscudo; barrera = false;}*/
-	printf("%d",salud_pj);
-	return salud_pj;
+	
 }
 void jugadorRepetido(){
     int variable1 = nJugadores[0], variable2 = nJugadores[1], variable3 = nJugadores[2], variable4 = nJugadores[3];
@@ -150,14 +173,15 @@ void validarEscenario(){
 
 yywrap(){}
 int main(){
+	srand( time(NULL) );
     //printf("Bienvenidos al Himalaya, ¿Helado?");
     yylex();
 
     //validarJugadores();
     //validarEscenario();
     //turno();
-    jugadorRepetido();
-    printf("%d\n",vAxel);
+    //jugadorRepetido();
+    //printf("%d\n",vAxel);
     
     
 	return 0;

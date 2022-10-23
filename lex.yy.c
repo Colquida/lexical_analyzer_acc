@@ -507,16 +507,20 @@ char *yytext;
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <time.h>
 #define MAX_PLAYERS 4
+int lucha(int salud_pj);
+
 
 int vAxel = 100, vGrasshopper = 100, vGrimm = 100, vHammerhead = 100, vMinion = 100, mine=0;
 int vOutlaw = 100, vRoadkill = 100, vShadow = 100, totalJugadores = 0, contador=0, escenarioActual = 0, jugada = 0;
-int nJugadores[4] = {50,51,52,53}, iter = 0, vEscudo=20, cooldown=0;
+int nJugadores[1000] = {50,51,52,53}, iter = 0, vEscudo=20, cooldown=0;
 bool estado = false, barrera=false;
 int ataque = 5;
 
-#line 518 "lex.yy.c"
-#line 519 "lex.yy.c"
+#line 522 "lex.yy.c"
+#line 523 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -733,10 +737,10 @@ YY_DECL
 		}
 
 	{
-#line 46 "simulador.l"
+#line 50 "simulador.l"
 
 
-#line 739 "lex.yy.c"
+#line 743 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -795,216 +799,220 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 48 "simulador.l"
+#line 52 "simulador.l"
 {printf("Fireball and freeze attack \n"); ataque=20;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 49 "simulador.l"
+#line 53 "simulador.l"
 {printf("Activando invisibilidad \n");}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 50 "simulador.l"
+#line 54 "simulador.l"
 {printf("Freeze \n");}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 51 "simulador.l"
+#line 55 "simulador.l"
 {printf("Freeze attack \n");ataque=10;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 52 "simulador.l"
+#line 56 "simulador.l"
 {printf("Escudo \n");barrera=true; cooldown=2;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 53 "simulador.l"
+#line 57 "simulador.l"
 {printf("Mine \n"); ataque=15;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 54 "simulador.l"
+#line 58 "simulador.l"
 {printf("Jump \n");}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 56 "simulador.l"
+#line 60 "simulador.l"
 {printf("Retroceder \n"); jugada += 1;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 57 "simulador.l"
+#line 61 "simulador.l"
 {printf("Acelerar \n");}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 58 "simulador.l"
+#line 62 "simulador.l"
 {printf("Cambiar de dirección a la derecha \n");}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 59 "simulador.l"
+#line 63 "simulador.l"
 {printf("Cambiar de dirección a la izquierda \n");}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 60 "simulador.l"
+#line 64 "simulador.l"
 {printf("Turbo \n");}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 61 "simulador.l"
+#line 65 "simulador.l"
 {printf("Frenar \n");}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 62 "simulador.l"
+#line 66 "simulador.l"
 {printf("Acelerar \n");}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 63 "simulador.l"
+#line 67 "simulador.l"
 {printf("Cambiar de arma a la izquierda \n");}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 64 "simulador.l"
-{printf("dispara a "); jugada += 1; estado = true;}
+#line 68 "simulador.l"
+{printf("dispara a "); estado = true;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 65 "simulador.l"
+#line 69 "simulador.l"
 {printf("Cambiar de arma a la derecha \n");}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 66 "simulador.l"
+#line 70 "simulador.l"
 {printf("Ametralladora \n");}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 68 "simulador.l"
+#line 72 "simulador.l"
 {printf("El escenario elegido es Moscow \n");escenarioActual += 1;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 69 "simulador.l"
+#line 73 "simulador.l"
 {printf("El escenario elegido es Paris \n");escenarioActual += 1;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 70 "simulador.l"
+#line 74 "simulador.l"
 {printf("El escenario elegido es Amazonía \n");escenarioActual += 1;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 71 "simulador.l"
+#line 75 "simulador.l"
 {printf("El escenario elegido es New York \n");escenarioActual += 1;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 72 "simulador.l"
+#line 76 "simulador.l"
 {printf("El escenario elegido es Antártica \n");escenarioActual += 1;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 73 "simulador.l"
+#line 77 "simulador.l"
 {printf("El escenario elegido es Holland \n");escenarioActual += 1;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 74 "simulador.l"
+#line 78 "simulador.l"
 {printf("El escenario elegido es Hong Kong \n");escenarioActual += 1;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 75 "simulador.l"
+#line 79 "simulador.l"
 {printf("El escenario elegido es Dark Tooth \n");escenarioActual += 1;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 77 "simulador.l"
+#line 81 "simulador.l"
 {printf("Axel ");totalJugadores += 1; nJugadores[iter] = 1; iter += 1;
 		vAxel=lucha(vAxel);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 79 "simulador.l"
-{printf("EL personaje elegido es Grasshopper \n");totalJugadores += 1; nJugadores[iter] = 2; iter += 1;}
+#line 83 "simulador.l"
+{printf("Grasshopper ");totalJugadores += 1; nJugadores[iter] = 2; iter += 1;
+		
+		}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 80 "simulador.l"
-{printf("Mr.Grimm ");totalJugadores += 1; nJugadores[iter] = 3; iter += 1;}
+#line 86 "simulador.l"
+{printf("Mr.Grimm ");totalJugadores += 1; nJugadores[iter] = 3; iter += 1;
+		vGrimm=lucha(vGrimm);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 81 "simulador.l"
-{printf("El personaje elegido es Hammerhead \n");totalJugadores += 1; nJugadores[iter] = 4; iter += 1;}
+#line 88 "simulador.l"
+{printf("Hammerhead ");totalJugadores += 1; nJugadores[iter] = 4; iter += 1;
+		vHammerhead=lucha(vHammerhead);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 82 "simulador.l"
+#line 90 "simulador.l"
 {printf("El personaje elegido es Minion \n");totalJugadores += 1; nJugadores[iter] = 5; iter += 1;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 83 "simulador.l"
+#line 91 "simulador.l"
 {printf("El personaje elegido es Outlaw 2 \n");totalJugadores += 1; nJugadores[iter] = 6; iter += 1;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 84 "simulador.l"
+#line 92 "simulador.l"
 {printf("EL personaje elegido es Roadkill \n");totalJugadores += 1; nJugadores[iter] = 7; iter += 1;}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 85 "simulador.l"
+#line 93 "simulador.l"
 {printf("El personaje elegido es Shadow \n");totalJugadores += 1; nJugadores[iter] = 8; iter += 1;}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 86 "simulador.l"
+#line 94 "simulador.l"
 {printf("El personaje elegido es Mr.Slam \n");totalJugadores += 1; nJugadores[iter] = 9; iter += 1;}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 87 "simulador.l"
+#line 95 "simulador.l"
 {printf("El personaje elegido es Spectre \n");totalJugadores += 1; nJugadores[iter] = 10; iter += 1;}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 88 "simulador.l"
+#line 96 "simulador.l"
 {printf("El personaje elegido es Sweettooth \n");totalJugadores += 1; nJugadores[iter] = 11; iter += 1;}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 89 "simulador.l"
+#line 97 "simulador.l"
 {printf("EL personaje elegido es Thumper \n");totalJugadores += 1; nJugadores[iter] = 12; iter += 1;}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 90 "simulador.l"
+#line 98 "simulador.l"
 {printf("El personaje elegido es Twister \n");totalJugadores += 1; nJugadores[iter] = 13; iter += 1;}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 91 "simulador.l"
+#line 99 "simulador.l"
 {printf("El personaje elegido es Warthog \n");totalJugadores += 1; nJugadores[iter] = 14; iter += 1;}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 92 "simulador.l"
+#line 100 "simulador.l"
 {printf("El personaje Darktooth no es seleccionable \n");}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 94 "simulador.l"
+#line 102 "simulador.l"
 ECHO;
 	YY_BREAK
-#line 1007 "lex.yy.c"
+#line 1015 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2009,25 +2017,42 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 94 "simulador.l"
+#line 102 "simulador.l"
 
 
 int lucha(int salud_pj){
-	/*
-	if(estado){salud_pj -= ataque; estado = false;} 
-	printf("%d", salud_pj);*/ //it's fine
 	
-	if (cooldown!=2){
+	if (estado){
+		if(rand()%2==0){
+			salud_pj -= ataque; estado = false;
+			printf("%d", salud_pj);
+			//return salud_pj;
+		}else {
+			printf("falló ataque \n");
+			estado = false;
+			//return salud_pj;
+			}
+		} return salud_pj;
+	
+	//it's fine
+	/*
+	if (barrera){
+		int temporal = salud_pj-ataque;
+		salud_pj+=barrera-ataque;
+	}*/
+	
+	/*
+	
+	if (cooldown==0){
 		if(estado){salud_pj -= ataque; estado = false;} 
 	} else {
 		salud_pj+=vEscudo-ataque;
 		cooldown--;
 		if (cooldown==0){cooldown=2;}
-	}
+	}*/
 	
 	/*if (barrera){salud_pj+=vEscudo; barrera = false;}*/
-	printf("%d",salud_pj);
-	return salud_pj;
+	
 }
 void jugadorRepetido(){
     int variable1 = nJugadores[0], variable2 = nJugadores[1], variable3 = nJugadores[2], variable4 = nJugadores[3];
@@ -2067,14 +2092,15 @@ void validarEscenario(){
 
 yywrap(){}
 int main(){
+	srand( time(NULL) );
     //printf("Bienvenidos al Himalaya, ¿Helado?");
     yylex();
 
     //validarJugadores();
     //validarEscenario();
     //turno();
-    jugadorRepetido();
-    printf("%d\n",vAxel);
+    //jugadorRepetido();
+    //printf("%d\n",vAxel);
     
     
 	return 0;

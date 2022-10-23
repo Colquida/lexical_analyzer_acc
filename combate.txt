@@ -1,3 +1,7 @@
-pmg →→↓↓ L2 pa
 pmg L2 pa
+pa L2 pmg
 pmg L2 pa
+pa L2 pmg
+pmg L2 pa
+ph L2 pa
+pmg L2 ph
